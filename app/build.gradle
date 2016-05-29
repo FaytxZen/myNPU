@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.andrewvora.apps.planforatlanta"
+        minSdkVersion 17
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+// Variables
+def appCompatVersion = '23.4.0'
+def junitVersion = '4.12'
+def mockitoVersion = '1.10.19'
+def leakCanaryVersion = '1.3.1'
+def playServicesVersion = '9.0.0'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // System Dependencies
+    compile "com.android.support:appcompat-v7:$appCompatVersion"
+    compile "com.android.support:design:$appCompatVersion"
+    compile "com.android.support:cardview-v7:$appCompatVersion"
+    compile "com.android.support:recyclerview-v7:$appCompatVersion"
+    compile "com.google.android.gms:play-services:$playServicesVersion"
+
+    // Developer Dependencies
+    compile 'com.jakewharton:butterknife:8.0.1'
+    apt 'com.jakewharton:butterknife-compiler:8.0.1'
+
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+
+    // Unit Testing Dependencies
+    testCompile "junit:junit:$junitVersion"
+    testCompile "org.mockito:mockito-core:$mockitoVersion"
+
+    // Android Instrumented Unit Testing Dependencies
+    androidTestCompile "junit:junit:$junitVersion"
+    androidTestCompile "org.mockito:mockito-core:$mockitoVersion"
+    androidTestCompile "com.android.support:support-annotations:$appCompatVersion"
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
+    androidTestCompile 'com.android.support.test:rules:0.4.1'
+    androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+}
