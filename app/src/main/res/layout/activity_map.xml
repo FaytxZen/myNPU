@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/map_fragment"
+            android:name="com.andrewvora.apps.planforatlanta.fragments.OurMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <include
+            layout="@layout/element_toolbar"
+            android:id="@+id/toolbar"/>
+
+        <EditText
+            style="@style/LowElevationStyle"
+            android:id="@+id/input_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:background="@color/md_white_1000"
+            android:padding="16dp"
+            android:visibility="gone"
+            android:hint="@string/hint_address"
+            tools:visibility="visible"/>
+
+        <TextView
+            style="@style/LowElevationStyle"
+            android:id="@+id/text_npu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/input_address"
+            android:padding="16dp"
+            android:drawableEnd="@drawable/ic_keyboard_arrow_down_grey_24dp"
+            android:background="@color/md_white_1000"
+            android:textSize="18sp"
+            tools:text="Select an NPU" />
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/search_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_search_white_24dp"
+        android:contentDescription="@string/content_description_find_npu_by_address"
+        app:elevation="12dp"
+        app:rippleColor="@color/colorAccentDark"/>
+</android.support.design.widget.CoordinatorLayout>

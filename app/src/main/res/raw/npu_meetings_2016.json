@@ -1,0 +1,229 @@
+{
+  "npuMeetings" : [
+    {
+      "npu": "NPU A",
+      "name" : "Meeting",
+      "location": "3160 Northside Pkwy, Atlanta, GA 30327",
+      "day": "Tuesday",
+      "time": "7:00 PM",
+      "occurrence": 1,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU B",
+      "name" : "Meeting",
+      "location": "2477 Peachtree Road, Atlanta, GA 30305",
+      "day": "Tuesday",
+      "time": "7:00 PM",
+      "occurrence": 1,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU C",
+      "name" : "Meeting",
+      "location": "3003 Howell Mill Rd, Building B, Room 108, Atlanta, GA 30327",
+      "time": "7:00 PM",
+      "day": "Tuesday",
+      "occurrence": 1,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU D",
+      "name" : "Meeting",
+      "location": "2353 Bolton Rd NW, Atlanta, GA 30318",
+      "time": "7:30 PM",
+      "day": "Tuesday",
+      "occurrence": 4,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU E",
+      "name" : "Meeting",
+      "location": "1580 Peachtree St NE, Atlanta, GA 30309",
+      "time": "6:30 PM",
+      "day": "Tuesday",
+      "occurrence": 1,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU F",
+      "name" : "Meeting",
+      "location": "1301 Monroe Dr NE, Atlanta, GA 30306",
+      "time": "7:00 PM",
+      "day": "Monday",
+      "occurrence": 3,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU G",
+      "name" : "Meeting",
+      "location": "1925 Hollywood Rd NW, Atlanta, GA 30318",
+      "time": "7:00 PM",
+      "day": "Thursday",
+      "occurrence": 3,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU H",
+      "name" : "Meeting",
+      "location": "677 Fairburn Rd NW, Atlanta, GA 30331",
+      "time": "7:00 PM",
+      "day": "Thursday",
+      "occurrence": 1,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU I",
+      "name" : "Meeting",
+      "location": "3201 M.L. King Jr. Dr., Atlanta, GA 30331",
+      "time": "7:00 PM",
+      "day": "Wednesday",
+      "occurrence": 3,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU J",
+      "name" : "Meeting",
+      "location": "225 H. E. Holmes Drive NW, Atlanta, Georgia 30318",
+      "time": "7:00 PM",
+      "day": "Tuesday",
+      "occurrence": 4,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU K",
+      "name" : "Meeting",
+      "location": "1665 ML King Jr. Dr., Atlanta, GA 30314",
+      "time": "6:30 PM",
+      "day": "Tuesday",
+      "occurrence": 3,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU L",
+      "name" : "Meeting",
+      "location": "186 Sunset Avenue, Atlanta, GA 30314",
+      "time": "7:00 PM",
+      "day": "Tuesday",
+      "occurrence": 2,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU M",
+      "name" : "Meeting",
+      "location": "515 John Wesley Dobbs Ave, Atlanta, GA 30312",
+      "time": "6:30 PM",
+      "day": "Monday",
+      "occurrence": 4,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU N",
+      "name" : "Meeting",
+      "location": "1083 Austin Avenue, Atlanta, GA 30307",
+      "time": "7:00 PM",
+      "day": "Thursday",
+      "occurrence": 4,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU O",
+      "name" : "Meeting",
+      "location": "2051 Delano Drive, Atlanta, GA 30317",
+      "time": "6:30 PM",
+      "day": "Tuesday",
+      "occurrence": 4,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU P",
+      "name" : "Meeting",
+      "location": "4099 Sunset Drive SW, Atlanta, GA 30331",
+      "time": "7:00 PM",
+      "day": "Monday",
+      "occurrence": 1,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU Q",
+      "name" : "Meeting",
+      "location": "4001 Danforth Road, Atlanta, GA 30331",
+      "time": "7:00 PM",
+      "day": "Thursday",
+      "occurrence": 3,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU R",
+      "name" : "Meeting",
+      "location": "2755 Campbellton Rd SW, Atlanta, GA 30311",
+      "time": "7:00 PM",
+      "day": "Wednesday",
+      "occurrence": 1,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU S",
+      "name" : "Meeting",
+      "location": "838 Cascade Rd. SW, Atlanta, GA 30311",
+      "time": "7:00 PM",
+      "day": "Thursday",
+      "occurrence": 3,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU T",
+      "name" : "Meeting",
+      "location": "1444 Lucille Ave. SW, Atlanta, GA 30310",
+      "time": "7:00 PM",
+      "day": "Wednesday",
+      "occurrence": 2,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU V",
+      "name" : "Meeting",
+      "location": "N/A",
+      "time": "7:00 PM",
+      "day": "Monday",
+      "occurrence": 2,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU W",
+      "name" : "Meeting",
+      "location": "1205 Metropolitan Ave, Atlanta, GA 30316",
+      "time": "7:30 PM",
+      "day": "Wednesday",
+      "occurrence": 4,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU X",
+      "name" : "Meeting",
+      "location": "1332 Metropolitan Ave SW, Atlanta, GA 30310",
+      "time": "7:00 PM",
+      "day": "Monday",
+      "occurrence": 2,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU Y",
+      "name" : "Meeting",
+      "location": "215 Lakewood Way SW, Atlanta, GA 30315",
+      "time": "7:00 PM",
+      "day": "Monday",
+      "occurrence": 3,
+      "frequency": "monthly"
+    },
+    {
+      "npu": "NPU Z",
+      "name" : "Meeting",
+      "location": "365 Cleveland Avenue SE, Atlanta, GA 30354",
+      "time": "7:00 PM",
+      "day": "Monday",
+      "occurrence": 4,
+      "frequency": "monthly"
+    }
+  ]
+}

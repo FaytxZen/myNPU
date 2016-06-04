@@ -1,5 +1,54 @@
 <resources>
     <string name="app_name">Plan for Atlanta</string>
+    <string name="author_name">by Andrew Vora</string>
+    <string name="twitter">\@faytxzen</string>
 
     <string name="title_home_activity">Home</string>
+    <string name="text_your_npu">Your NPU is</string>
+    <string name="text_default_npu">--</string>
+    <string name="title_map_activity">Set Your NPU</string>
+    <string name="title_upcoming_events">Upcoming Events</string>
+    <string name="button_find_npu">Find NPU</string>
+    <string name="button_set">Set</string>
+    <string name="text_about_npu">What are NPUs?</string>
+    <string name="text_share_app">Get your friends involved!</string>
+    <string name="text_npu_meeting_times">See the entire NPU meeting schedule</string>
+
+    <string name="dismiss">Dismiss</string>
+    <string name="text_npu_set">Set your NPU as %s</string>
+    <string name="content_description_find_npu_by_address">Find NPU by entering an address</string>
+    <string name="content_description_event">Event</string>
+
+    <string name="hint_address">Enter an address here</string>
+
+    <string name="title_geocode_result_marker">The latitude and longitude of the address entered</string>
+    <string name="title_dialog_select_npu">Select Your NPU</string>
+    <string name="text_dialog_cannot_find_npu">Could not find NPU from the given address.</string>
+    <string name="text_npu_template">NPU %s</string>
+    <string-array name="list_npus">
+        <item>NPU A</item>
+        <item>NPU B</item>
+        <item>NPU C</item>
+        <item>NPU D</item>
+        <item>NPU F</item>
+        <item>NPU G</item>
+        <item>NPU H</item>
+        <item>NPU I</item>
+        <item>NPU J</item>
+        <item>NPU K</item>
+        <item>NPU L</item>
+        <item>NPU M</item>
+        <item>NPU N</item>
+        <item>NPU O</item>
+        <item>NPU P</item>
+        <item>NPU R</item>
+        <item>NPU S</item>
+        <item>NPU T</item>
+        <item>NPU U</item>
+        <item>NPU V</item>
+        <item>NPU W</item>
+        <item>NPU X</item>
+        <item>NPU Y</item>
+        <item>NPU Z</item>
+    </string-array>
 </resources>

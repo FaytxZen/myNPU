@@ -3,6 +3,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <!--TODO: Make app indexable with an action view intent filter on an Activity-->
     <application
         android:name=".OurApplication"
         android:allowBackup="true"
@@ -16,12 +17,29 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".HomeActivity">
+            android:name=".activities.HomeActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:alwaysRetainTaskState="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.MapActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:alwaysRetainTaskState="true">
+        </activity>
+
+        <activity
+            android:name=".activities.AboutActivity"
+            android:alwaysRetainTaskState="true">
+        </activity>
+
+        <activity android:name=".activities.ScheduleActivity"
+            android:alwaysRetainTaskState="true">
         </activity>
 
     </application>
