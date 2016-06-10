@@ -38,7 +38,13 @@
             android:alwaysRetainTaskState="true">
         </activity>
 
-        <activity android:name=".activities.ScheduleActivity"
+        <activity
+            android:name=".activities.ScheduleActivity"
+            android:alwaysRetainTaskState="true">
+        </activity>
+
+        <activity
+            android:name=".activities.SettingsActivity"
             android:alwaysRetainTaskState="true">
         </activity>
 

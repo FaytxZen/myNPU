@@ -72,6 +72,16 @@ public class DashboardFragment extends Fragment {
         startActivity(openAboutActivityIntent);
     }
 
+    @OnClick(R.id.share_this_app)
+    void onShareClicked() {
+        Intent shareIntent = new Intent();
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.text_default_share));
+        shareIntent.setType("text/plain");
+        startActivity(shareIntent);
+    }
+
     private void initViews() {
         String key = getNpuFromPref().toLowerCase();
         EventAdapter eventAdapter = new EventAdapter(Session.getNpuMap().get(key));
