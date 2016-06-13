@@ -15,11 +15,13 @@
     <string name="pref_notifications_key" translatable="false">NotificationPreference</string>
 
     <string name="title_home_activity">Home</string>
+    <string name="title_about_activity">About</string>
     <string name="text_your_npu">Your NPU is</string>
     <string name="text_default_npu">--</string>
     <string name="title_map_activity">Set Your NPU</string>
     <string name="title_upcoming_events">Upcoming Events</string>
     <string name="button_find_npu">Find NPU</string>
+    <string name="button_find_your_npu">Find Your NPU</string>
     <string name="button_set">Set</string>
     <string name="text_about_npu">What are NPUs?</string>
     <string name="text_share_app">Get your friends involved!</string>
@@ -30,11 +32,33 @@
     <string name="content_description_find_npu_by_address">Find NPU by entering an address</string>
     <string name="content_description_event">Event</string>
 
+    <string name="content_description_image">A backdrop image.</string>
+
     <string name="hint_address">Enter an address here</string>
 
     <string name="title_geocode_result_marker">The latitude and longitude of the address entered</string>
     <string name="title_dialog_select_npu">Select Your NPU</string>
     <string name="text_dialog_cannot_find_npu">Could not find NPU from the given address.</string>
+
+    <string name="title_about_what_is_npu">What is an NPU?</string>
+    <string name="text_about_what_is_npu">
+        The City of Atlanta is divided into twenty-five Neighborhood Planning Units or NPUs,
+        which are citizen advisory councils that make recommendations to the Mayor
+        and City Council on zoning, land use, and other planning issues.
+        The NPU system was established in 1974 to provide an opportunity for citizens to participate
+        actively in the Comprehensive Development Plan,
+        which is the city\'s vision for the next five, ten, and fifteen years.
+        It is also used as a way for citizens to receive information concerning all functions of city government.
+        The system enables citizens to express ideas and comment on city plans and proposals
+        while assisting the city in developing plans that best meet the needs of their communities.
+    </string>
+
+    <string name="title_about_which">What is my NPU?**</string>
+    <string name="text_about_which">We\'ll tell you! Just click the button and get to the NPU locator tool.</string>
+
+    <string name="text_about_source">**Information from the City of Atlanta website</string>
+    <string name="text_about_source_url">http://www.atlantaga.gov/index.aspx?page=739</string>
+
     <string name="text_npu_template">NPU %s</string>
     <string-array name="list_npus">
         <item>NPU A</item>

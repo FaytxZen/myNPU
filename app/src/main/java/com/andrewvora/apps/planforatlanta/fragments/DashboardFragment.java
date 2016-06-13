@@ -35,6 +35,12 @@ public class DashboardFragment extends Fragment {
     @BindView(R.id.list_upcoming_events) RecyclerView mEventsRecyclerView;
     @BindView(R.id.text_selected_npu) TextView mNpuTextView;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
