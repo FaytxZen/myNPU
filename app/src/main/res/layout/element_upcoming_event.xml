@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="@color/md_white_1000"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <ImageView
+        android:id='@+id/meeting_icon'
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_centerVertical="true"
+        android:tint="@color/colorAccent"
+        android:src="@drawable/ic_event_black_48dp"
+        android:contentDescription="@string/content_description_event"/>
+
+    <TextView
+        style="@style/TextViewStyle"
+        android:id="@+id/meeting_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/meeting_icon"
+        android:textSize="24sp"
+        tools:text="Meeting"/>
+
+    <TextView
+        android:id="@+id/meeting_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/meeting_name"
+        android:layout_toEndOf="@id/meeting_icon"
+        android:layout_marginBottom="8dp"
+        android:textSize="14sp"
+        tools:text="January 12, 2020 7:00 PM"/>
+
+    <TextView
+        style="@style/TextViewStyle"
+        android:id="@+id/meeting_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/meeting_time"
+        android:layout_toEndOf="@id/meeting_icon"
+        android:textSize="16sp"
+        tools:text="15 Palmetto Drive, Atlanta, GA 33333"/>
+</RelativeLayout>

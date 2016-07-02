@@ -16,6 +16,7 @@
 
     <string name="title_home_activity">Home</string>
     <string name="title_about_activity">About</string>
+    <string name="title_schedule_activity">Meeting Schedule</string>
     <string name="text_your_npu">Your NPU is</string>
     <string name="text_default_npu">--</string>
     <string name="title_map_activity">Set Your NPU</string>
@@ -24,7 +25,7 @@
     <string name="button_find_your_npu">Find Your NPU</string>
     <string name="button_set">Set</string>
     <string name="text_about_npu">What are NPUs?</string>
-    <string name="text_share_app">Get your friends involved!</string>
+    <string name="text_share_app">Tell your friends!</string>
     <string name="text_npu_meeting_times">See the entire NPU meeting schedule</string>
 
     <string name="dismiss">Dismiss</string>

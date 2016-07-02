@@ -1,5 +1,6 @@
 package com.andrewvora.apps.planforatlanta.activities;
 
+import android.animation.Animator;
 import android.app.AlertDialog;
 import android.graphics.Bitmap;
 import android.location.Address;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -20,6 +22,7 @@ import com.andrewvora.apps.planforatlanta.OurApplication;
 import com.andrewvora.apps.planforatlanta.R;
 import com.andrewvora.apps.planforatlanta.dialogs.NpuDialogFragment;
 import com.andrewvora.apps.planforatlanta.fragments.OurMapFragment;
+import com.andrewvora.apps.planforatlanta.listeners.SimpleAnimatorListener;
 import com.andrewvora.apps.planforatlanta.utils.GeoUtil;
 import com.andrewvora.apps.planforatlanta.utils.ViewUtil;
 import com.google.android.gms.maps.CameraUpdate;
@@ -244,17 +247,54 @@ public class MapActivity extends AppCompatActivity implements
      * Private Methods
      *===========================================*/
     private void toggleNpuViews() {
-        boolean searchMode = mAddressEditText.getVisibility() == View.VISIBLE;
-        int drawableRes = searchMode ?
+        final int animDuration = 200;
+        final boolean searchMode = mAddressEditText.getVisibility() == View.VISIBLE;
+        final int drawableRes = searchMode ?
                 R.drawable.ic_search_white_24dp :
                 R.drawable.ic_close_white_24dp;
 
         // toggle the visibility of the Views
-        mSelectedNpuTextView.setVisibility(searchMode ? View.VISIBLE : View.GONE);
-        mAddressEditText.setVisibility(searchMode ? View.GONE : View.VISIBLE);
+        if(searchMode) {
+            mSelectedNpuTextView.setAlpha(0.0f);
+            mSelectedNpuTextView.setVisibility(View.VISIBLE);
+
+            mSelectedNpuTextView.animate().alpha(1.0f).setDuration(animDuration).setListener(null)
+                    .start();
+
+            mAddressEditText.animate().alpha(0.0f)
+                    .setDuration(animDuration).setListener(new SimpleAnimatorListener() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+
+                    mAddressEditText.setVisibility(View.GONE);
+                }
+            }).start();
+        }
+        else {
+            mAddressEditText.setAlpha(0.0f);
+            mAddressEditText.setVisibility(View.VISIBLE);
+
+            mAddressEditText.animate().alpha(1.0f).setDuration(animDuration).setListener(null)
+                    .start();
+
+            mSelectedNpuTextView.animate().alpha(0.0f)
+                    .setDuration(animDuration).setListener(new SimpleAnimatorListener() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mSelectedNpuTextView.setVisibility(View.GONE);
+                }
+            }).start();
+        }
 
         // change the FAB icon accordingly
-        mSearchFab.setImageResource(drawableRes);
+        mSearchFab.animate().rotation(searchMode ? 0f : 180f)
+                .setListener(new SimpleAnimatorListener() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        mSearchFab.setImageResource(drawableRes);
+                    }
+                })
+                .setDuration(animDuration).start();
     }
 
     private void setNpuInPreferences(String npuLetter) {

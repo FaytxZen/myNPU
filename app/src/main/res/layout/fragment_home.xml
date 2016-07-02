@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:orientation="vertical"
-                android:padding="24dp"
+                android:padding="40dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:background="@color/md_grey_800">
@@ -58,14 +58,17 @@
                 android:id="@+id/list_upcoming_events"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="28dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                tools:listitem="@layout/element_event"
+                tools:listitem="@layout/element_upcoming_event"
                 tools:layout_height="175dp"/>
 
             <!--About NPUs-->
-            <include layout="@layout/element_separator"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_blue_600"/>
             <TextView
                 android:id="@+id/about_npus"
                 android:layout_width="match_parent"
@@ -73,11 +76,16 @@
                 android:padding="20dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:background="@drawable/selector_clickable_view_dark_blue"
+                android:textColor="@color/md_white_1000"
                 android:textSize="20sp"
                 android:text="@string/text_about_npu"/>
 
             <!--All NPU Meeting Times-->
-            <include layout="@layout/element_separator"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_blue_500"/>
             <TextView
                 android:id="@+id/npu_meeting_times"
                 android:layout_width="match_parent"
@@ -85,11 +93,16 @@
                 android:padding="20dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:background="@drawable/selector_clickable_view_blue"
+                android:textColor="@color/md_white_1000"
                 android:textSize="20sp"
                 android:text="@string/text_npu_meeting_times"/>
 
             <!--All NPU Meeting Times-->
-            <include layout="@layout/element_separator"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_blue_400"/>
             <TextView
                 android:id="@+id/share_this_app"
                 android:layout_width="match_parent"
@@ -97,6 +110,8 @@
                 android:padding="20dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:background="@drawable/selector_clickable_view_light_blue"
+                android:textColor="@color/md_white_1000"
                 android:textSize="20sp"
                 android:text="@string/text_share_app"/>
         </LinearLayout>
@@ -110,6 +125,10 @@
         android:layout_margin="16dp"
         android:src="@drawable/ic_edit_white_24dp"
         android:contentDescription=""
+        app:fabSize="normal"
+        app:borderWidth="0dp"
+        app:elevation="8dp"
+        app:pressedTranslationZ="12dp"
         app:layout_anchor="@id/row_npu"
         app:layout_anchorGravity="bottom|right|end"/>
 </android.support.design.widget.CoordinatorLayout>

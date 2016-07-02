@@ -2,44 +2,51 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:background="@color/md_white_1000"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
-
-    <ImageView
-        android:id='@+id/meeting_icon'
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_centerVertical="true"
-        android:tint="@color/colorAccent"
-        android:src="@drawable/ic_event_black_48dp"
-        android:contentDescription="@string/content_description_event"/>
+    android:padding="12dp">
 
     <TextView
-        android:id="@+id/meeting_name"
+        android:id="@+id/event_npu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/meeting_icon"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
+        android:fontFamily="sans-serif-condensed"
         android:textSize="24sp"
+        android:textColor="@color/md_white_1000"
+        tools:text="NPU A"
+        tools:background="@color/colorPrimaryDark"/>
+
+    <TextView
+        style="@style/TextViewStyle"
+        android:id="@+id/event_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/event_npu"
+        android:textSize="18sp"
         tools:text="Meeting"/>
 
     <TextView
-        android:id="@+id/meeting_time"
+        android:id="@+id/event_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/meeting_name"
-        android:layout_toEndOf="@id/meeting_icon"
-        android:textSize="14sp"
-        tools:text="January 12, 2020 7:00 PM"/>
+        android:layout_below="@id/event_title"
+        android:layout_toEndOf="@id/event_npu"
+        android:layout_marginBottom="4dp"
+        tools:text="September 19, 2016 7:00 PM"/>
 
     <TextView
-        android:id="@+id/meeting_location"
-        android:layout_width="match_parent"
+        style="@style/TextViewStyle"
+        android:id="@+id/event_location"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/meeting_time"
-        android:layout_toEndOf="@id/meeting_icon"
-        android:textSize="16sp"
-        tools:text="15 Palmetto Drive, Atlanta, GA 33333"/>
+        android:layout_below="@id/event_time"
+        android:layout_toEndOf="@id/event_npu"
+        tools:text="1523 Rodney King Lane, Kentucky, IL 40506"/>
 </RelativeLayout>

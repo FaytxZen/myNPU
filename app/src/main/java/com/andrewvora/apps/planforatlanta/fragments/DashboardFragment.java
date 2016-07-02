@@ -1,7 +1,5 @@
 package com.andrewvora.apps.planforatlanta.fragments;
 
-import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,13 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.andrewvora.apps.planforatlanta.OurApplication;
 import com.andrewvora.apps.planforatlanta.R;
 import com.andrewvora.apps.planforatlanta.Session;
 import com.andrewvora.apps.planforatlanta.activities.AboutActivity;
 import com.andrewvora.apps.planforatlanta.activities.MapActivity;
 import com.andrewvora.apps.planforatlanta.activities.ScheduleActivity;
-import com.andrewvora.apps.planforatlanta.adapters.EventAdapter;
+import com.andrewvora.apps.planforatlanta.adapters.UpcomingEventAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,12 +25,14 @@ import butterknife.OnClick;
  * Created by root on 5/31/16.
  * @author faytxzen
  */
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends BaseFragment {
 
     public static final String TAG = DashboardFragment.class.getSimpleName();
 
     @BindView(R.id.list_upcoming_events) RecyclerView mEventsRecyclerView;
     @BindView(R.id.text_selected_npu) TextView mNpuTextView;
+
+    private UpcomingEventAdapter mEventAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,6 +57,10 @@ public class DashboardFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         setNpu();
+
+        String key = getNpuFromPref().toLowerCase();
+        mEventAdapter.setEvents(Session.getNpuMap().get(key));
+        mEventAdapter.notifyDataSetChanged();
     }
 
     @OnClick(R.id.set_npu_fab)
@@ -90,22 +93,14 @@ public class DashboardFragment extends Fragment {
 
     private void initViews() {
         String key = getNpuFromPref().toLowerCase();
-        EventAdapter eventAdapter = new EventAdapter(Session.getNpuMap().get(key));
+        mEventAdapter = new UpcomingEventAdapter(Session.getNpuMap().get(key));
 
         mEventsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mEventsRecyclerView.setHasFixedSize(true);
-        mEventsRecyclerView.setAdapter(eventAdapter);
+        mEventsRecyclerView.setAdapter(mEventAdapter);
     }
 
     private void setNpu() {
         mNpuTextView.setText(getNpuFromPref());
-    }
-
-    private String getNpuFromPref() {
-        String defaultNpuText = getString(R.string.text_default_npu);
-
-        return getActivity()
-                .getSharedPreferences(OurApplication.APP_PREFERENCES, Context.MODE_PRIVATE)
-                .getString(MapActivity.TAG_NPU, defaultNpuText);
     }
 }

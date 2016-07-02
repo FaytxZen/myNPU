@@ -12,6 +12,7 @@ public class NpuData {
     private String time;
     private String frequency;
     private int occurrence;
+    private int color;
 
     public String getNpuName() {
         return npuName;
@@ -67,5 +68,13 @@ public class NpuData {
 
     public void setOccurrence(int occurrence) {
         this.occurrence = occurrence;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 }
