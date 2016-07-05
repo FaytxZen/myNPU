@@ -21,7 +21,7 @@
                 android:id="@+id/row_npu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="32dp"
                 android:orientation="vertical"
                 android:padding="40dp"
                 android:paddingStart="20dp"
@@ -58,17 +58,11 @@
                 android:id="@+id/list_upcoming_events"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="28dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
+                android:layout_marginBottom="32dp"
                 tools:listitem="@layout/element_upcoming_event"
                 tools:layout_height="175dp"/>
 
             <!--About NPUs-->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/md_blue_600"/>
             <TextView
                 android:id="@+id/about_npus"
                 android:layout_width="match_parent"
@@ -82,10 +76,6 @@
                 android:text="@string/text_about_npu"/>
 
             <!--All NPU Meeting Times-->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/md_blue_500"/>
             <TextView
                 android:id="@+id/npu_meeting_times"
                 android:layout_width="match_parent"
@@ -99,10 +89,6 @@
                 android:text="@string/text_npu_meeting_times"/>
 
             <!--All NPU Meeting Times-->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/md_blue_400"/>
             <TextView
                 android:id="@+id/share_this_app"
                 android:layout_width="match_parent"

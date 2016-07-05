@@ -31,7 +31,7 @@
     <string name="dismiss">Dismiss</string>
     <string name="text_npu_set">Set your NPU as %s</string>
     <string name="content_description_find_npu_by_address">Find NPU by entering an address</string>
-    <string name="content_description_event">Event</string>
+    <string name="content_description_event">Click to bring up directions</string>
 
     <string name="content_description_image">A backdrop image.</string>
 

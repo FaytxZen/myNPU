@@ -1,5 +1,6 @@
 package com.andrewvora.apps.planforatlanta.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 import com.andrewvora.apps.planforatlanta.R;
 import com.andrewvora.apps.planforatlanta.models.NpuData;
 import com.andrewvora.apps.planforatlanta.utils.DateUtil;
-import com.andrewvora.apps.planforatlanta.utils.ViewUtil;
+import com.andrewvora.apps.planforatlanta.utils.IntentUtil;
 
 import java.util.List;
 
@@ -39,32 +40,37 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        NpuData event = mEvents.get(position);
+        final NpuData event = mEvents.get(position);
+        final Context context = holder.itemView.getContext();
 
         // set the event time
         final String eventTime = DateUtil
                 .getFormattedDate(event.getTime(), event.getDay(), event.getOccurrence());
         holder.eventTimeTextView.setText(eventTime);
-        holder.eventTimeTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: send event intent
-            }
-        });
 
         // set the event NPU block
         holder.eventNpuTextView.setBackgroundColor(event.getColor());
         holder.eventNpuTextView.setText(event.getNpuName());
+        holder.eventNpuTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // send an Intent to a map application for the event's location String
+                IntentUtil.sendMapIntent(context, IntentUtil.getGeoUriFor(event.getLocation()));
+            }
+        });
 
         // set the event title
         holder.eventTitleTextView.setText(event.getMeetingName());
 
         // set the event location
         holder.eventLocationTextView.setText(event.getLocation());
-        holder.eventLocationTextView.setOnClickListener(new View.OnClickListener() {
+
+        // on click - send a calendar intent
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: send maps intent
+                // send an Intent to the ContentProvider for Calendar events
+                IntentUtil.sendCalendarIntent(context, event);
             }
         });
     }

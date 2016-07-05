@@ -1,7 +1,9 @@
 package com.andrewvora.apps.planforatlanta.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.IllegalFormatException;
 import java.util.Locale;
@@ -13,6 +15,19 @@ import java.util.Locale;
 public final class DateUtil {
 
     public static final String READABLE_DATE_FORMAT = "MMMM dd, yyyy";
+    public static final String TIME_12H_FORMAT = "hh:mm a";
+
+    public static Date getTimeFromString(String timeStr) {
+        try {
+            return new SimpleDateFormat(TIME_12H_FORMAT, Locale.getDefault())
+                    .parse(timeStr);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
     public static String getFormattedDate(String time, String day, int occurrence) throws
             IllegalFormatException
@@ -25,7 +40,7 @@ public final class DateUtil {
                 .format(calendar.getTime()) + " " + time;
     }
 
-    private static int getDayConstant(String day) {
+    public static int getDayConstant(String day) {
         switch(day.toLowerCase()) {
             case "monday":
                 return Calendar.MONDAY;

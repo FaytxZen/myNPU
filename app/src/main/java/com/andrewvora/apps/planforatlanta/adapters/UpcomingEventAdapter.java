@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.andrewvora.apps.planforatlanta.R;
 import com.andrewvora.apps.planforatlanta.models.NpuData;
 import com.andrewvora.apps.planforatlanta.utils.DateUtil;
+import com.andrewvora.apps.planforatlanta.utils.IntentUtil;
 import com.andrewvora.apps.planforatlanta.utils.ViewUtil;
 
 import java.util.List;
@@ -47,23 +48,26 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
 
         holder.meetingIconView.setColorFilter(ViewUtil.getRandomColor(context),
                 PorterDuff.Mode.SRC_ATOP);
+        holder.meetingIconView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // send an Intent to a map application for the event's location String
+                IntentUtil.sendMapIntent(context, IntentUtil.getGeoUriFor(event.getLocation()));
+            }
+        });
 
         holder.meetingNameView.setText(event.getMeetingName());
         holder.meetingLocView.setText(event.getLocation());
-        holder.meetingLocView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: send maps intent
-            }
-        });
 
         String timeStr = DateUtil
                 .getFormattedDate(event.getTime(), event.getDay(), event.getOccurrence());
         holder.meetingTimeView.setText(timeStr);
-        holder.meetingTimeView.setOnClickListener(new View.OnClickListener() {
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: send event intent
+                // send an Intent to the Calendar ContentProvider to add this event
+                IntentUtil.sendCalendarIntent(context, event);
             }
         });
     }
