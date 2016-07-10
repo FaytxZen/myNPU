@@ -97,6 +97,7 @@ public class DashboardFragment extends BaseFragment {
 
         mEventsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mEventsRecyclerView.setHasFixedSize(true);
+        mEventsRecyclerView.setNestedScrollingEnabled(false);
         mEventsRecyclerView.setAdapter(mEventAdapter);
     }
 

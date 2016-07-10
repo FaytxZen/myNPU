@@ -7,5 +7,5 @@
         android:drawable="@color/md_grey_300"/>
 
     <item
-        android:drawable="@color/md_grey_300"/>
+        android:drawable="@color/md_white_1000"/>
 </selector>

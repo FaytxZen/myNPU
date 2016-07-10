@@ -1,6 +1,8 @@
 package com.andrewvora.apps.planforatlanta.activities;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,9 +30,15 @@ public class BaseActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
 
+            /* Uncomment once any settings-controlled features are implemented
             case R.id.menu_settings:
                 Intent preferenceIntent = new Intent(this, SettingsActivity.class);
                 startActivity(preferenceIntent);
+                break;
+            */
+
+            case R.id.menu_feedback:
+                sendFeedback();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -46,5 +54,16 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void setUseDefaultOptionsMenu(boolean hasMenu) {
         mUseDefaultOptionsMenu = hasMenu;
+    }
+
+    private void sendFeedback() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[] {getString(R.string.app_email)});
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.text_subject_feedback));
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 }

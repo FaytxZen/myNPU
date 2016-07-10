@@ -1,13 +1,14 @@
 <resources>
-    <string name="app_name">Plan for Atlanta</string>
-    <string name="author_name">by Andrew Vora</string>
-    <string name="twitter">\@faytxzen</string>
+    <string name="app_name">myNPU</string>
+    <string name="app_email">andrewvora.apps@gmail.com</string>
+    <string name="text_subject_feedback">Feedback for myNpu</string>
 
     <string name="menu_settings">Settings</string>
+    <string name="menu_feedback">Send Feedback</string>
 
     <string name="text_default_share">
         Find out more about NPUs from your Android phone!
-        Check out Plan for Atlanta on Google Play :)
+        Check out myNPU on Google Play :)
     </string>
 
     <string name="pref_notifications_title">Allow Notifications</string>
@@ -34,6 +35,8 @@
     <string name="content_description_event">Click to bring up directions</string>
 
     <string name="content_description_image">A backdrop image.</string>
+    <string name="content_description_home_backdrop">An image of the Atlanta cityscape.</string>
+    <string name="content_description_app_icon">The app logo.</string>
 
     <string name="hint_address">Enter an address here</string>
 

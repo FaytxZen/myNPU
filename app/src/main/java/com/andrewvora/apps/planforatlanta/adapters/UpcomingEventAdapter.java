@@ -56,7 +56,8 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
             }
         });
 
-        holder.meetingNameView.setText(event.getMeetingName());
+        holder.meetingNameView.setText(String.format("%s - %s",
+                event.getNpuName(), event.getMeetingName()));
         holder.meetingLocView.setText(event.getLocation());
 
         String timeStr = DateUtil

@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
+    app:cardBackgroundColor="@color/md_white_1000"
     app:cardElevation="4dp"
     app:cardCornerRadius="4dp">
 
@@ -13,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_clickable_view"
-        android:padding="12dp"
+        android:padding="16dp"
         tools:background="@color/md_white_1000">
 
         <ImageView
@@ -34,8 +35,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/meeting_icon"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textSize="24sp"
-            tools:text="Meeting"/>
+            tools:text="NPU B - Really Long Meeting Name"/>
 
         <!--Time-->
         <TextView
