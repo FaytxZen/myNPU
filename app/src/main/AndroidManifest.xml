@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.andrewvora.apps.planforatlanta">
+    package="com.andrewvora.apps.mynpu">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
@@ -7,7 +7,7 @@
 
     <!--TODO: Make app indexable with an action view intent filter on an Activity-->
     <application
-        android:name=".OurApplication"
+        android:name="com.andrewvora.apps.mynpu.OurApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,7 +19,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".activities.HomeActivity"
+            android:name="com.andrewvora.apps.mynpu.activities.HomeActivity"
             android:windowSoftInputMode="adjustResize"
             android:alwaysRetainTaskState="true">
             <intent-filter>
@@ -30,23 +30,23 @@
         </activity>
 
         <activity
-            android:name=".activities.MapActivity"
+            android:name="com.andrewvora.apps.mynpu.activities.MapActivity"
             android:windowSoftInputMode="adjustResize"
             android:alwaysRetainTaskState="true">
         </activity>
 
         <activity
-            android:name=".activities.AboutActivity"
+            android:name="com.andrewvora.apps.mynpu.activities.AboutActivity"
             android:alwaysRetainTaskState="true">
         </activity>
 
         <activity
-            android:name=".activities.ScheduleActivity"
+            android:name="com.andrewvora.apps.mynpu.activities.ScheduleActivity"
             android:alwaysRetainTaskState="true">
         </activity>
 
         <activity
-            android:name=".activities.SettingsActivity"
+            android:name="com.andrewvora.apps.mynpu.activities.SettingsActivity"
             android:alwaysRetainTaskState="true">
         </activity>
 

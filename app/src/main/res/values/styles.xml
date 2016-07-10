@@ -1,5 +1,5 @@
 <resources>
-
+    <!--Themes-->
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -22,6 +22,7 @@
     <style name="ToolbarPopupTheme" parent="ThemeOverlay.AppCompat.Light">
     </style>
 
+    <!--TextView Styles-->
     <style name="TextViewStyle">
         <item name="android:textColor">@color/md_grey_800</item>
     </style>
@@ -53,6 +54,7 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <!--Material Style Overrides-->
     <style name="LowElevationStyle">
     </style>
 

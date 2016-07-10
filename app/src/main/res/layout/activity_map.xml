@@ -14,7 +14,7 @@
 
         <fragment
             android:id="@+id/map_fragment"
-            android:name="com.andrewvora.apps.planforatlanta.fragments.OurMapFragment"
+            android:name="com.andrewvora.apps.mynpu.fragments.OurMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
@@ -66,6 +66,5 @@
         app:fabSize="normal"
         app:borderWidth="0dp"
         app:elevation="12dp"
-        app:pressedTranslationZ="16dp"
         app:rippleColor="@color/colorAccentDark"/>
 </android.support.design.widget.CoordinatorLayout>
