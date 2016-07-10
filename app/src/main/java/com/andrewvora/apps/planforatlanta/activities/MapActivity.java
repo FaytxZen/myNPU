@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -205,7 +206,8 @@ public class MapActivity extends AppCompatActivity implements
     }
 
     @OnEditorAction(R.id.input_address)
-    boolean onSearchEditorAction(TextView v) {
+    boolean onSearchEditorAction(TextView v, KeyEvent event) {
+        if(event == null || event.getAction() != KeyEvent.ACTION_DOWN) return false;
         if(mCurrentLocMarker != null) mCurrentLocMarker.remove();
 
         LatLng latLng = reverseGeocodeAddress(v.getText().toString());

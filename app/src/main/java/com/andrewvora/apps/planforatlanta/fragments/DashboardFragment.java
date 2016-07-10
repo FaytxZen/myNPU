@@ -31,6 +31,7 @@ public class DashboardFragment extends BaseFragment {
 
     @BindView(R.id.list_upcoming_events) RecyclerView mEventsRecyclerView;
     @BindView(R.id.text_selected_npu) TextView mNpuTextView;
+    @BindView(R.id.empty_events_view) TextView mEmptyTextView;
 
     private UpcomingEventAdapter mEventAdapter;
 
@@ -61,6 +62,8 @@ public class DashboardFragment extends BaseFragment {
         String key = getNpuFromPref().toLowerCase();
         mEventAdapter.setEvents(Session.getNpuMap().get(key));
         mEventAdapter.notifyDataSetChanged();
+
+        updateEmptyEventsViews();
     }
 
     @OnClick(R.id.set_npu_fab)
@@ -99,6 +102,20 @@ public class DashboardFragment extends BaseFragment {
         mEventsRecyclerView.setHasFixedSize(true);
         mEventsRecyclerView.setNestedScrollingEnabled(false);
         mEventsRecyclerView.setAdapter(mEventAdapter);
+
+        updateEmptyEventsViews();
+    }
+
+    private void updateEmptyEventsViews() {
+        // null-check
+        if(mEventAdapter == null || mEmptyTextView == null) return;
+
+        // determine which visibility to use
+        int emptyEventsMessage = mEventAdapter.getItemCount() == 0 ?
+                View.VISIBLE : View.GONE;
+
+        // apply it
+        mEmptyTextView.setVisibility(emptyEventsMessage);
     }
 
     private void setNpu() {

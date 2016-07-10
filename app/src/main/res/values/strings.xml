@@ -15,7 +15,7 @@
     <string name="pref_notifications_summary">Such as event reminders and announcements</string>
     <string name="pref_notifications_key" translatable="false">NotificationPreference</string>
 
-    <string name="title_home_activity">Home</string>
+    <string name="title_home_activity">Dashboard</string>
     <string name="title_about_activity">About</string>
     <string name="title_schedule_activity">Meeting Schedule</string>
     <string name="text_your_npu">Your NPU is</string>
@@ -31,6 +31,7 @@
 
     <string name="dismiss">Dismiss</string>
     <string name="text_npu_set">Set your NPU as %s</string>
+    <string name="text_no_events">No events found.</string>
     <string name="content_description_find_npu_by_address">Find NPU by entering an address</string>
     <string name="content_description_event">Click to bring up directions</string>
 

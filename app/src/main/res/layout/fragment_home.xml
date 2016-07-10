@@ -71,6 +71,19 @@
                     android:padding="16dp"
                     android:text="@string/title_upcoming_events"/>
 
+                <TextView
+                    android:id="@+id/empty_events_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:padding="16dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/md_grey_500"
+                    android:textSize="20sp"
+                    android:text="@string/text_no_events"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/list_upcoming_events"
                     android:layout_width="match_parent"

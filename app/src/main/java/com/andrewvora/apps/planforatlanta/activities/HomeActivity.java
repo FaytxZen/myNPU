@@ -30,7 +30,7 @@ public class HomeActivity extends BaseActivity {
 
         setSupportActionBar(mToolbar);
         if(getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(R.string.app_name);
+            getSupportActionBar().setTitle(R.string.title_home_activity);
         }
 
         Fragment dashboardFragment = getFragmentManager().findFragmentByTag(DashboardFragment.TAG);
