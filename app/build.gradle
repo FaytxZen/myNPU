@@ -32,7 +32,7 @@ def appCompatVersion = '23.4.0'
 def junitVersion = '4.12'
 def mockitoVersion = '1.10.19'
 def leakCanaryVersion = '1.3.1'
-def playServicesVersion = '9.2.0'
+def playServicesVersion = '9.2.1'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -44,6 +44,8 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$appCompatVersion"
     compile "com.google.android.gms:play-services-location:$playServicesVersion"
     compile "com.google.android.gms:play-services-maps:$playServicesVersion"
+    compile "com.google.firebase:firebase-core:$playServicesVersion"
+    compile "com.google.firebase:firebase-database:$playServicesVersion"
     compile ('com.google.maps.android:android-maps-utils:0.4.3') {
     }
 
@@ -68,3 +70,5 @@ dependencies {
     androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
 }
+
+apply plugin: 'com.google.gms.google-services'

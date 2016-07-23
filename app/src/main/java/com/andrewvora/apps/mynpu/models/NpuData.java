@@ -1,6 +1,9 @@
 package com.andrewvora.apps.mynpu.models;
 
 import com.andrewvora.apps.mynpu.utils.DateUtil;
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.database.PropertyName;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -11,17 +14,33 @@ import java.util.Locale;
  * Created by root on 6/3/16.
  * @author faytxzen
  */
+@IgnoreExtraProperties
 public class NpuData {
 
     public static final long DEFAULT_DURATION = 60 * 60 * 1000; // one hour
 
-    private String npuName;
-    private String meetingName;
+    @PropertyName("npu")
+    private String npu;
+
+    @PropertyName("name")
+    private String name;
+
+    @PropertyName("location")
     private String location;
+
+    @PropertyName("day")
     private String day;
+
+    @PropertyName("time")
     private String time;
+
+    @PropertyName("frequency")
     private String frequency;
+
+    @PropertyName("occurrence")
     private int occurrence;
+
+    @Exclude
     private int color;
 
     /**
@@ -62,6 +81,9 @@ public class NpuData {
      * @return the {@link android.provider.CalendarContract.Events#RRULE} String
      */
     public String getRepeatingRule() {
+        // make sure we have a valid day
+        if(getDay() == null || getDay().isEmpty()) return "";
+
         // occurrence of the day of the week
         String repeatOnDay = String.valueOf(getOccurrence());
 
@@ -76,20 +98,20 @@ public class NpuData {
                 numMonthsRemaining, repeatOnDay);
     }
 
-    public String getNpuName() {
-        return npuName;
+    public String getNpu() {
+        return npu;
     }
 
-    public void setNpuName(String npuName) {
-        this.npuName = npuName;
+    public void setNpu(String npu) {
+        this.npu = npu;
     }
 
-    public String getMeetingName() {
-        return meetingName;
+    public String getName() {
+        return name;
     }
 
-    public void setMeetingName(String meetingName) {
-        this.meetingName = meetingName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLocation() {

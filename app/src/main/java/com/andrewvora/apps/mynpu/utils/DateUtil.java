@@ -9,6 +9,7 @@ import java.util.IllegalFormatException;
 import java.util.Locale;
 
 /**
+ * Utility methods for operations related to dates and time.
  * Created by root on 6/3/16.
  * @author faytxzen
  */
@@ -18,12 +19,17 @@ public final class DateUtil {
     public static final String TIME_12H_FORMAT = "hh:mm a";
 
     public static Date getTimeFromString(String timeStr) {
-        try {
-            return new SimpleDateFormat(TIME_12H_FORMAT, Locale.getDefault())
-                    .parse(timeStr);
-        }
-        catch (ParseException e) {
-            e.printStackTrace();
+        // make sure the timeStr isn't null or empty to prevent a parse exception
+        if(timeStr != null && !timeStr.isEmpty())
+        {
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat(TIME_12H_FORMAT, Locale.getDefault());
+                sdf.setLenient(false);
+                return sdf.parse(timeStr);
+            }
+            catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
 
         return null;

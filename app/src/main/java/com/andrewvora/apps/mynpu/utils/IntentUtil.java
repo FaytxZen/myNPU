@@ -47,7 +47,7 @@ public final class IntentUtil {
                 CalendarContract.Events.CONTENT_URI);
 
         String title = String.format("%s - %s",
-                eventData.getNpuName(), eventData.getMeetingName());
+                eventData.getNpu(), eventData.getName());
 
         calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, eventData.getStartTime());
         calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, eventData.getEndTime());

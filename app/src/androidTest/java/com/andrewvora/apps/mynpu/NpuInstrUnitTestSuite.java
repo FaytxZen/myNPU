@@ -1,5 +1,7 @@
 package com.andrewvora.apps.mynpu;
 
+import com.andrewvora.apps.mynpu.ui.HomeNavigationTest;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -9,7 +11,7 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-
+        HomeNavigationTest.class
 })
 public class NpuInstrUnitTestSuite {
 }

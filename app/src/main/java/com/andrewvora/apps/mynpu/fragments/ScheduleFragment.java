@@ -108,7 +108,7 @@ public class ScheduleFragment extends BaseFragment
         Collections.sort(events, new Comparator<NpuData>() {
             @Override
             public int compare(NpuData lhs, NpuData rhs) {
-                return lhs.getNpuName().compareTo(rhs.getNpuName());
+                return lhs.getNpu().compareTo(rhs.getNpu());
             }
         });
 

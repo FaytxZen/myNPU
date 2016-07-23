@@ -1,10 +1,11 @@
-package com.andrewvora.apps.mynpu.tests;
+package com.andrewvora.apps.mynpu.adapters;
 
 import com.andrewvora.apps.mynpu.adapters.EventsAdapter;
 import com.andrewvora.apps.mynpu.common.BaseUnitTest;
 import com.andrewvora.apps.mynpu.models.NpuData;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +13,12 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * Test class for {@link EventsAdapter}
+ * Unit test class for {@link EventsAdapter}
  *
  * Created by faytx on 7/10/2016.
  * @author faytxzen
  */
 public class EventsAdapterTest extends BaseUnitTest {
-
     /**
      * Unit test for {@link EventsAdapter#getItemCount()}
      * @throws Exception

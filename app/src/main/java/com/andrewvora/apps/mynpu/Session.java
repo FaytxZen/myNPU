@@ -3,12 +3,16 @@ package com.andrewvora.apps.mynpu;
 import android.util.Log;
 
 import com.andrewvora.apps.mynpu.models.NpuData;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,24 +23,51 @@ import java.util.List;
  */
 public final class Session {
 
+    private static final String KEY_NPU_DATA = "npuMeetings";
+
     public HashMap<String, List<NpuData>> npuMap = new HashMap<>();
     private static final Session mInstance = new Session();
     private Session() {}
 
-    public static boolean loadMeetingData(InputStream is) {
-        String meetingJson;
+    public interface OnDataReadyListener {
+        void onDataReady();
+    }
+
+    public static boolean loadMeetingData(final OnDataReadyListener listener) {
 
         try {
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            int numBytesRead = is.read(buffer);
-            is.close();
+            ValueEventListener eventListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
 
-            if(numBytesRead != size) return false;
-            else {
-                meetingJson = new String(buffer, "UTF-8");
-                setNpuMap(meetingJson);
-            }
+                    for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        NpuData npuData = snapshot.getValue(NpuData.class);
+
+                        if(npuData != null && npuData.getNpu() != null) {
+                            // specify the key we're using
+                            String key = npuData.getNpu().toLowerCase();
+
+                            // initialize the List if the key doesn't exist
+                            if(!getNpuMap().containsKey(key)) {
+                                getNpuMap().put(key, new ArrayList<NpuData>());
+                            }
+
+                            // add the NPU event data
+                            getNpuMap().get(key).add(npuData);
+                        }
+                    }
+
+                    // alert the listener that we've loaded the data
+                    listener.onDataReady();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) { }
+            };
+
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            databaseReference.child(KEY_NPU_DATA).addValueEventListener(eventListener);
+
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(Session.class.getSimpleName(), e.getMessage());
@@ -65,8 +96,8 @@ public final class Session {
                 }
 
                 NpuData npuData = new NpuData();
-                npuData.setNpuName(npuName);
-                npuData.setMeetingName(obj.getString("name"));
+                npuData.setNpu(npuName);
+                npuData.setName(obj.getString("name"));
                 npuData.setLocation(obj.getString("location"));
                 npuData.setDay(obj.getString("day"));
                 npuData.setOccurrence(obj.getInt("occurrence"));

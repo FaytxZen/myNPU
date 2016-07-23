@@ -77,4 +77,8 @@ public class NpuAdapter extends ArrayAdapter<String> {
     public void setSelectedIndex(int index) {
         mSelectedIndex = index;
     }
+
+    public int getSelectedIndex() {
+        return mSelectedIndex;
+    }
 }

@@ -48,6 +48,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        // get the required information
         final NpuData event = mEvents.get(position);
         final Context context = holder.itemView.getContext();
 
@@ -58,7 +59,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
         // set the event NPU block
         holder.eventNpuTextView.setBackgroundColor(event.getColor());
-        holder.eventNpuTextView.setText(event.getNpuName());
+        holder.eventNpuTextView.setText(event.getNpu());
         holder.eventNpuTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +69,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         });
 
         // set the event title
-        holder.eventTitleTextView.setText(event.getMeetingName());
+        holder.eventTitleTextView.setText(event.getName());
 
         // set the event location
         holder.eventLocationTextView.setText(event.getLocation());

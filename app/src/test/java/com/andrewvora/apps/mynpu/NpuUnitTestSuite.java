@@ -1,6 +1,7 @@
 package com.andrewvora.apps.mynpu;
 
-import com.andrewvora.apps.mynpu.tests.EventsAdapterTest;
+import com.andrewvora.apps.mynpu.models.NpuDataTest;
+import com.andrewvora.apps.mynpu.adapters.EventsAdapterTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -11,6 +12,7 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        EventsAdapterTest.class
+        EventsAdapterTest.class,
+        NpuDataTest.class
 })
 public class NpuUnitTestSuite { }
