@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="@string/text_about_what_is_npu"
-        tools:layout_height="400dp"/>
+        tools:layout_height="300dp"/>
 
     <!--What is my NPU?-->
     <TextView
