@@ -19,7 +19,10 @@ import com.andrewvora.apps.mynpu.activities.AboutActivity;
 import com.andrewvora.apps.mynpu.activities.MapActivity;
 import com.andrewvora.apps.mynpu.activities.ScheduleActivity;
 import com.andrewvora.apps.mynpu.adapters.UpcomingEventAdapter;
+import com.andrewvora.apps.mynpu.listeners.DataReceiverListener;
 import com.andrewvora.apps.mynpu.listeners.LocalDataReceiver;
+
+import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +38,7 @@ import butterknife.OnClick;
  * @author faytxzen
  */
 public class DashboardFragment extends BaseFragment
-        implements LocalDataReceiver.DataReceiverListener
+        implements DataReceiverListener
 {
     /*===========================================*
      * Constants
@@ -122,6 +125,13 @@ public class DashboardFragment extends BaseFragment
     /*===========================================*
      * Event Listeners
      *===========================================*/
+    @OnClick(R.id.refresh_button)
+    void onRefreshClicked(View view) {
+        view.animate().rotationBy(-180f).setDuration(250).start();
+        Session.getInstance().loadMeetingData(new WeakReference<DataReceiverListener>(this));
+
+    }
+
     @OnClick(R.id.set_npu_fab)
     void onFindNpuClicked() {
         Intent findNpuIntent = new Intent(getActivity(), MapActivity.class);
@@ -157,7 +167,7 @@ public class DashboardFragment extends BaseFragment
     private void initViews() {
         // initialize the adapter based on the set NPU
         String key = getNpuFromPref().toLowerCase();
-        mEventAdapter = new UpcomingEventAdapter(Session.getNpuMap().get(key));
+        mEventAdapter = new UpcomingEventAdapter(Session.getInstance().getNpuMap().get(key));
 
         // initialize the RecyclerView
         mEventsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -172,7 +182,7 @@ public class DashboardFragment extends BaseFragment
     private void refreshEventsAdapter() {
         // reload the events based on the newly set NPU or data source
         String key = getNpuFromPref().toLowerCase();
-        mEventAdapter.setEvents(Session.getNpuMap().get(key));
+        mEventAdapter.setEvents(Session.getInstance().getNpuMap().get(key));
         mEventAdapter.notifyDataSetChanged();
     }
 

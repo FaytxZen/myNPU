@@ -64,12 +64,28 @@
 
                 </RelativeLayout>
 
-                <TextView
-                    style="@style/HeaderTextStyle"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:text="@string/title_upcoming_events"/>
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        style="@style/HeaderTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:text="@string/title_upcoming_events"/>
+
+                    <ImageView
+                        android:id="@+id/refresh_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:tint="@color/md_grey_800"
+                        android:src="@drawable/ic_refresh_32dp"
+                        android:contentDescription="@string/content_description_refresh_data"/>
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/empty_events_view"
@@ -90,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="32dp"
                     tools:listitem="@layout/element_upcoming_event"
-                    tools:layout_height="175dp"/>
+                    tools:layout_height="150dp"/>
 
                 <!--About NPUs-->
                 <TextView

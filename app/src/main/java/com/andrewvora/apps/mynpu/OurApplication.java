@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.content.LocalBroadcastManager;
 
-import com.squareup.leakcanary.LeakCanary;
+import com.andrewvora.apps.mynpu.listeners.DataReceiverListener;
+
+import java.lang.ref.WeakReference;
 
 /**
  * A custom Application subclass for managing app configurations.
@@ -13,7 +15,7 @@ import com.squareup.leakcanary.LeakCanary;
  * Created by faytxzen on 5/29/16.
  * @author faytxzen
  */
-public class OurApplication extends Application implements Session.OnDataReadyListener {
+public class OurApplication extends Application implements DataReceiverListener {
 
     public static final String APP_PREFERENCES = "ApplicationSharedPreferences";
     public static final String ACTION_DATA_LOADED = "NpuDataHasBeenLoaded";
@@ -23,9 +25,11 @@ public class OurApplication extends Application implements Session.OnDataReadyLi
         super.onCreate();
 
         // enable memory leak detection for debug builds only
+        /*
         if(BuildConfig.DEBUG) {
             LeakCanary.install(this);
         }
+        */
 
         // asynchronously load the npu data
         AsyncTask.execute(new Runnable() {
@@ -44,6 +48,6 @@ public class OurApplication extends Application implements Session.OnDataReadyLi
     }
 
     private void loadMeetingData() {
-        Session.loadMeetingData(this);
+        Session.getInstance().loadMeetingData(new WeakReference<DataReceiverListener>(this));
     }
 }

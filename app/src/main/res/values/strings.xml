@@ -38,6 +38,7 @@
     <string name="content_description_image">A backdrop image.</string>
     <string name="content_description_home_backdrop">An image of the Atlanta cityscape.</string>
     <string name="content_description_app_icon">The app logo.</string>
+    <string name="content_description_refresh_data">Click to refresh the NPU data.</string>
 
     <string name="hint_address">Enter an address here</string>
 

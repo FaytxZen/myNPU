@@ -4,6 +4,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,10 +15,12 @@ import com.andrewvora.apps.mynpu.OurApplication;
 import com.andrewvora.apps.mynpu.R;
 import com.andrewvora.apps.mynpu.Session;
 import com.andrewvora.apps.mynpu.adapters.EventsAdapter;
+import com.andrewvora.apps.mynpu.listeners.DataReceiverListener;
 import com.andrewvora.apps.mynpu.listeners.LocalDataReceiver;
 import com.andrewvora.apps.mynpu.models.NpuData;
 import com.andrewvora.apps.mynpu.utils.ViewUtil;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -32,12 +35,13 @@ import butterknife.ButterKnife;
  * @author faytxzen
  */
 public class ScheduleFragment extends BaseFragment
-        implements LocalDataReceiver.DataReceiverListener
+        implements DataReceiverListener
 {
 
     public static final String TAG = ScheduleFragment.class.getSimpleName();
 
     @BindView(R.id.events) RecyclerView mEventsRecyclerView;
+    @BindView(R.id.swipe_layout) SwipeRefreshLayout mSwipeLayout;
 
     private LocalDataReceiver mBroadcastReceiver;
 
@@ -88,11 +92,20 @@ public class ScheduleFragment extends BaseFragment
     }
 
     private void initViews() {
-        Collection<List<NpuData>> npuDataLists = Session.getNpuMap().values();
+        Collection<List<NpuData>> npuDataLists = Session.getInstance().getNpuMap().values();
 
         if(npuDataLists.size() > 0) {
             initLists(npuDataLists);
         }
+
+        mSwipeLayout.setColorSchemeResources(R.color.md_grey_600);
+        mSwipeLayout.setRefreshing(false);
+        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshData();
+            }
+        });
     }
 
     private void initLists(Collection<List<NpuData>> npuDataLists) {
@@ -117,5 +130,9 @@ public class ScheduleFragment extends BaseFragment
 
         mEventsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mEventsRecyclerView.setHasFixedSize(true);
+    }
+
+    private void refreshData() {
+        Session.getInstance().loadMeetingData(new WeakReference<DataReceiverListener>(this));
     }
 }

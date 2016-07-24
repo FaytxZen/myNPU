@@ -22,7 +22,4 @@ public class LocalDataReceiver extends BroadcastReceiver {
         if(mListener != null) mListener.onDataReady();
     }
 
-    public interface DataReceiverListener {
-        void onDataReady();
-    }
 }

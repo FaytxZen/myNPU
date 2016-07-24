@@ -2,6 +2,7 @@ package com.andrewvora.apps.mynpu;
 
 import android.util.Log;
 
+import com.andrewvora.apps.mynpu.listeners.DataReceiverListener;
 import com.andrewvora.apps.mynpu.models.NpuData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -9,10 +10,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,15 +23,18 @@ public final class Session {
 
     private static final String KEY_NPU_DATA = "npuMeetings";
 
-    public HashMap<String, List<NpuData>> npuMap = new HashMap<>();
+    public HashMap<String, List<NpuData>> npuMap;
     private static final Session mInstance = new Session();
     private Session() {}
 
-    public interface OnDataReadyListener {
-        void onDataReady();
+    public static Session getInstance() {
+        return mInstance;
     }
 
-    public static boolean loadMeetingData(final OnDataReadyListener listener) {
+    public boolean loadMeetingData
+            (final WeakReference<DataReceiverListener> listener)
+    {
+        setNpuMap(new HashMap<String, List<NpuData>>());
 
         try {
             ValueEventListener eventListener = new ValueEventListener() {
@@ -58,7 +59,9 @@ public final class Session {
                     }
 
                     // alert the listener that we've loaded the data
-                    listener.onDataReady();
+                    if(listener.get() != null) {
+                        listener.get().onDataReady();
+                    }
                 }
 
                 @Override
@@ -77,39 +80,11 @@ public final class Session {
         return true;
     }
 
-    public static HashMap<String, List<NpuData>> getNpuMap() {
+    public HashMap<String, List<NpuData>> getNpuMap() {
         return mInstance.npuMap;
     }
 
-    private static void setNpuMap(String json) {
-        try {
-            JSONObject npuJson = new JSONObject(json);
-            JSONArray npuJsonArr = npuJson.getJSONArray("npuMeetings");
-
-            for(int i = 0; i < npuJsonArr.length(); i++) {
-                JSONObject obj = npuJsonArr.getJSONObject(i);
-                String npuName = obj.getString("npu");
-                String key = npuName.toLowerCase();
-
-                if(!getNpuMap().containsKey(key)) {
-                    getNpuMap().put(key, new ArrayList<NpuData>());
-                }
-
-                NpuData npuData = new NpuData();
-                npuData.setNpu(npuName);
-                npuData.setName(obj.getString("name"));
-                npuData.setLocation(obj.getString("location"));
-                npuData.setDay(obj.getString("day"));
-                npuData.setOccurrence(obj.getInt("occurrence"));
-                npuData.setTime(obj.getString("time"));
-                npuData.setFrequency(obj.getString("frequency"));
-
-                getNpuMap().get(key).add(npuData);
-            }
-        }
-        catch (JSONException je) {
-            je.printStackTrace();
-            Log.e(Session.class.getSimpleName(), je.getMessage());
-        }
+    public void setNpuMap(HashMap<String, List<NpuData>> map) {
+        mInstance.npuMap = map;
     }
 }
