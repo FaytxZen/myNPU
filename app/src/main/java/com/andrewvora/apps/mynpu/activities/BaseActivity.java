@@ -9,9 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.andrewvora.apps.mynpu.R;
-import com.crashlytics.android.Crashlytics;
-
-import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by root on 6/2/16.
@@ -25,7 +22,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Fabric.with(this, new Crashlytics());
+        //Fabric.with(this, new Crashlytics());
     }
 
     @Override
