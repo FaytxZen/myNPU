@@ -32,6 +32,13 @@
     <string name="dismiss">Dismiss</string>
     <string name="text_npu_set">Set your NPU as %s</string>
     <string name="text_no_events">No events found.</string>
+    <string name="text_no_internet">
+        Seems like you\'re not connected to the Internet.
+        Please connect, then hit refresh.
+    </string>
+    <string name="text_data_is_stale">
+        Could not connect to the Internet. Event data may be out-of-date.
+    </string>
     <string name="content_description_find_npu_by_address">Find NPU by entering an address</string>
     <string name="content_description_event">Click to bring up directions</string>
 

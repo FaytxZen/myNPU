@@ -21,6 +21,7 @@ import com.andrewvora.apps.mynpu.activities.ScheduleActivity;
 import com.andrewvora.apps.mynpu.adapters.UpcomingEventAdapter;
 import com.andrewvora.apps.mynpu.listeners.DataReceiverListener;
 import com.andrewvora.apps.mynpu.listeners.LocalDataReceiver;
+import com.andrewvora.apps.mynpu.utils.ServiceUtil;
 
 import java.lang.ref.WeakReference;
 
@@ -127,9 +128,12 @@ public class DashboardFragment extends BaseFragment
      *===========================================*/
     @OnClick(R.id.refresh_button)
     void onRefreshClicked(View view) {
+        if(!ServiceUtil.hasInternetConnectivity(getActivity())) {
+            ServiceUtil.promptNoInternet(getActivity(), R.string.text_data_is_stale);
+        }
+
         view.animate().rotationBy(-180f).setDuration(250).start();
         Session.getInstance().loadMeetingData(new WeakReference<DataReceiverListener>(this));
-
     }
 
     @OnClick(R.id.set_npu_fab)
@@ -191,11 +195,16 @@ public class DashboardFragment extends BaseFragment
         if(mEventAdapter == null || mEmptyTextView == null) return;
 
         // determine which visibility to use
-        int emptyEventsMessage = mEventAdapter.getItemCount() == 0 ?
+        int visibility = mEventAdapter.getItemCount() == 0 ?
                 View.VISIBLE : View.GONE;
 
+        int errorMsgResId = !ServiceUtil.hasInternetConnectivity(getActivity()) ?
+                R.string.text_no_internet :
+                R.string.text_no_events;
+
         // apply it
-        mEmptyTextView.setVisibility(emptyEventsMessage);
+        mEmptyTextView.setText(errorMsgResId);
+        mEmptyTextView.setVisibility(visibility);
     }
 
     private void setNpu() {

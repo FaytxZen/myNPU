@@ -18,6 +18,7 @@ import com.andrewvora.apps.mynpu.adapters.EventsAdapter;
 import com.andrewvora.apps.mynpu.listeners.DataReceiverListener;
 import com.andrewvora.apps.mynpu.listeners.LocalDataReceiver;
 import com.andrewvora.apps.mynpu.models.NpuData;
+import com.andrewvora.apps.mynpu.utils.ServiceUtil;
 import com.andrewvora.apps.mynpu.utils.ViewUtil;
 
 import java.lang.ref.WeakReference;
@@ -133,6 +134,9 @@ public class ScheduleFragment extends BaseFragment
     }
 
     private void refreshData() {
+        if(!ServiceUtil.hasInternetConnectivity(getActivity())) {
+            ServiceUtil.promptNoInternet(getActivity(), R.string.text_data_is_stale);
+        }
         Session.getInstance().loadMeetingData(new WeakReference<DataReceiverListener>(this));
     }
 }

@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v4.content.LocalBroadcastManager;
 
 import com.andrewvora.apps.mynpu.listeners.DataReceiverListener;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.lang.ref.WeakReference;
 
@@ -39,6 +40,8 @@ public class OurApplication extends Application implements DataReceiverListener 
                 loadMeetingData();
             }
         });
+
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
 
     @Override
