@@ -36,7 +36,7 @@ For instructions on getting that set up, consult the [Firebase documentation](ht
 ### Optional Configuration
 This app also uses Google Maps to display the NPU borders and geocode addresses. As a result, you'll need a Google Maps for Android API key. You can get this from the [Google API console](https://console.developers.google.com).
 
-Add the API key to the api_keys.xml file. It should look like the following blurb:
+Add the API key to the `api_keys.xml` file. It should look like the following blurb:
 
 ```xml
 <resources>
