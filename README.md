@@ -1,5 +1,7 @@
 # myNPU
 
+![build status](https://travis-ci.org/FaytxZen/myNPU.svg?branch=master)
+
 ## Purpose
 
 Civilian involvement is one of the most effective ways to bring about change at the grassroots level. By getting involved (directly and indirectly) with your community planning committees, you help reflect the needs of your community at the municipal level and further. In Atlanta, one of the supported channels for giving feedback on city planning efforts is the NPU system. This app was made to help locals learn about NPUs and find out what NPU they belong to.
