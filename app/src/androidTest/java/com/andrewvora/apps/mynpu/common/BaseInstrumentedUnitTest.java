@@ -19,6 +19,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
  * @author faytxzen
  */
 @RunWith(AndroidJUnit4.class)
-public class BaseInstrumentedUnitTest {
+public abstract class BaseInstrumentedUnitTest {
 
 }

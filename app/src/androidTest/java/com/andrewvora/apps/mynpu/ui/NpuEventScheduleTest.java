@@ -8,6 +8,7 @@ import com.andrewvora.apps.mynpu.activities.ScheduleActivity;
 import com.andrewvora.apps.mynpu.common.BaseInstrumentedUnitTest;
 
 import org.junit.Rule;
+import org.junit.Test;
 
 /**
  * Created by faytx on 7/17/2016.
@@ -20,5 +21,8 @@ public class NpuEventScheduleTest extends BaseInstrumentedUnitTest {
     public ActivityTestRule<ScheduleActivity> mScheduleActivityRule =
             new ActivityTestRule<>(ScheduleActivity.class);
 
+    @Test
+    public void testMethod() {
 
+    }
 }

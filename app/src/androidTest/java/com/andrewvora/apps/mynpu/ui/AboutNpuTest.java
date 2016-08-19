@@ -8,6 +8,7 @@ import com.andrewvora.apps.mynpu.activities.HomeActivity;
 import com.andrewvora.apps.mynpu.common.BaseInstrumentedUnitTest;
 
 import org.junit.Rule;
+import org.junit.Test;
 
 /**
  * Created by faytx on 7/17/2016.
@@ -20,5 +21,8 @@ public class AboutNpuTest extends BaseInstrumentedUnitTest {
     public ActivityTestRule<AboutActivity> mAboutActivityRule =
             new ActivityTestRule<>(AboutActivity.class);
 
+    @Test
+    public void testMethod() {
 
+    }
 }

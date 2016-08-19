@@ -8,6 +8,7 @@ import com.andrewvora.apps.mynpu.activities.MapActivity;
 import com.andrewvora.apps.mynpu.common.BaseInstrumentedUnitTest;
 
 import org.junit.Rule;
+import org.junit.Test;
 
 /**
  * Created by faytx on 7/17/2016.
@@ -20,5 +21,8 @@ public class NpuMapTest extends BaseInstrumentedUnitTest {
     public ActivityTestRule<MapActivity> mMapActivityRule =
             new ActivityTestRule<>(MapActivity.class);
 
+    @Test
+    public void testMethod() {
 
+    }
 }

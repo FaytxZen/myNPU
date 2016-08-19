@@ -9,7 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
  * @author faytxzen
  */
 @RunWith(MockitoJUnitRunner.class)
-public class BaseUnitTest {
+public abstract class BaseUnitTest {
 
     @Before
     public void setup() {
