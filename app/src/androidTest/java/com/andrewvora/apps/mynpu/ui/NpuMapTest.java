@@ -22,7 +22,17 @@ public class NpuMapTest extends BaseInstrumentedUnitTest {
             new ActivityTestRule<>(MapActivity.class);
 
     @Test
-    public void testMethod() {
+    public void testClickingSearchFabTogglesInputField() {
+
+    }
+
+    @Test
+    public void testSettingNpuFromSpinner() {
+
+    }
+
+    @Test
+    public void testQueryingForTypedAddress() {
 
     }
 }

@@ -6,6 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 import com.andrewvora.apps.mynpu.R;
 import com.andrewvora.apps.mynpu.activities.HomeActivity;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,4 +22,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 @RunWith(AndroidJUnit4.class)
 public abstract class BaseInstrumentedUnitTest {
 
+    @Before
+    public void setup() {
+
+    }
 }

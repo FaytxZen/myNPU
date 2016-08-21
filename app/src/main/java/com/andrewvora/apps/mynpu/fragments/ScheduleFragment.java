@@ -38,7 +38,6 @@ import butterknife.ButterKnife;
 public class ScheduleFragment extends BaseFragment
         implements DataReceiverListener
 {
-
     public static final String TAG = ScheduleFragment.class.getSimpleName();
 
     @BindView(R.id.events) RecyclerView mEventsRecyclerView;
