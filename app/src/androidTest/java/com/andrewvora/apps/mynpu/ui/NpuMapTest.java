@@ -11,6 +11,8 @@ import org.junit.Rule;
 import org.junit.Test;
 
 /**
+ * Tests for {@link MapActivity}.
+ *
  * Created by faytx on 7/17/2016.
  * @author faytxzen
  */
@@ -23,7 +25,7 @@ public class NpuMapTest extends BaseInstrumentedUnitTest {
 
     @Test
     public void testClickingSearchFabTogglesInputField() {
-
+        
     }
 
     @Test
