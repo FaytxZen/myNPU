@@ -27,7 +27,6 @@ import static org.junit.Assert.*;
  * Created by faytx on 7/17/2016.
  * @author faytxzen
  */
-@LargeTest
 public class HomeNavigationTest extends BaseInstrumentedUnitTest {
 
     @Rule
@@ -64,6 +63,6 @@ public class HomeNavigationTest extends BaseInstrumentedUnitTest {
     @Test
     public void testTellYourFriendsDoesNotThrowException() throws Exception {
         // attempt to open the dialog
-        onView(withId(R.id.share_this_app)).perform(scrollTo()).perform(click());
+        onView(withId(R.id.share_this_app)).perform(scrollTo()).check(matches(isDisplayed()));
     }
 }
