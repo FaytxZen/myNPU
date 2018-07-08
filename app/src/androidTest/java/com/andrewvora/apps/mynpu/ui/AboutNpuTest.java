@@ -40,13 +40,13 @@ public class AboutNpuTest extends BaseInstrumentedUnitTest {
     }
 
     @Test
-    public void testScrolling() throws Exception {
+    public void testScrolling() {
         // try to scroll
         onView(withId(R.id.collapsing_toolbar_layout)).perform(swipeUp());
     }
 
     @Test
-    public void testExternalLinksDoNotCrashApp() throws Exception {
+    public void testExternalLinksDoNotCrashApp() {
         // make sure all controls linking to external sources are visible
         onView(withId(R.id.go_to_atl_site_fab)).check(matches(isDisplayed()));
 
@@ -55,7 +55,7 @@ public class AboutNpuTest extends BaseInstrumentedUnitTest {
     }
 
     @Test
-    public void testHasLinkToMapActivity() throws Exception {
+    public void testHasLinkToMapActivity() {
         // collapse the toolbar
         onView(withId(R.id.collapsing_toolbar_layout)).perform(swipeUp());
 

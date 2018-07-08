@@ -1,6 +1,10 @@
 package com.andrewvora.apps.mynpu;
 
+import com.andrewvora.apps.mynpu.ui.AboutNpuTest;
 import com.andrewvora.apps.mynpu.ui.HomeNavigationTest;
+import com.andrewvora.apps.mynpu.ui.NpuEventScheduleTest;
+import com.andrewvora.apps.mynpu.ui.NpuMapTest;
+import com.andrewvora.apps.mynpu.ui.UpcomingEventsTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -11,7 +15,11 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        HomeNavigationTest.class
+        HomeNavigationTest.class,
+		AboutNpuTest.class,
+		NpuEventScheduleTest.class,
+		NpuMapTest.class,
+		UpcomingEventsTest.class
 })
 public class NpuInstrUnitTestSuite {
 }

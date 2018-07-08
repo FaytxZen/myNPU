@@ -39,14 +39,6 @@ public class NpuEventScheduleTest extends BaseInstrumentedUnitTest {
     }
 
     @Test
-    public void testClickingOnAnEventItemDetails() {
-        // make sure clicking on an item doesn't cause a crash
-        // click on the event details
-        onView(withId(R.id.events)).perform(
-                RecyclerViewActions.actionOnItemAtPosition(0, click()));
-    }
-
-    @Test
     public void testClickingOnAnEventIconForMap() {
         // make sure clicking on an item doesn't cause  a crash
         // click on the event details
