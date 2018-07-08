@@ -24,6 +24,7 @@ public class OurApplication extends Application implements DataReceiverListener 
     @Override
     public void onCreate() {
         super.onCreate();
+	    FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         // enable memory leak detection for debug builds only
         /*
@@ -40,8 +41,6 @@ public class OurApplication extends Application implements DataReceiverListener 
                 loadMeetingData();
             }
         });
-
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
 
     @Override
@@ -51,6 +50,6 @@ public class OurApplication extends Application implements DataReceiverListener 
     }
 
     private void loadMeetingData() {
-        Session.getInstance().loadMeetingData(new WeakReference<DataReceiverListener>(this));
+        Session.getInstance().loadEventData(new WeakReference<DataReceiverListener>(this));
     }
 }

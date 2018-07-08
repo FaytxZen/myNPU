@@ -9,8 +9,5 @@ import com.google.android.gms.maps.SupportMapFragment;
  * @author faytxzen
  */
 public class OurMapFragment extends SupportMapFragment {
-    @Override
-    public void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-    }
+
 }

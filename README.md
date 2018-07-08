@@ -1,6 +1,6 @@
 # myNPU
 
-![build status](https://travis-ci.org/FaytxZen/mynpu.svg?branch=master)
+![build status](https://travis-ci.org/andrewvora/mynpu.svg?branch=master)
 
 ## Purpose
 

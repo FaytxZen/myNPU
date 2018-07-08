@@ -25,6 +25,7 @@
         android:src="@drawable/ic_open_in_new_white_24dp"
         android:contentDescription=""
         android:clickable="true"
+        android:focusable="true"
         app:elevation="8dp"
         app:layout_anchor="@+id/app_bar_layout"
         app:layout_anchorGravity="bottom|end"/>
@@ -34,7 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="256dp"
         android:background="@color/colorPrimary"
-        android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:elevation="8dp">
 
@@ -42,7 +42,6 @@
             android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
             app:contentScrim="@color/colorPrimary"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"

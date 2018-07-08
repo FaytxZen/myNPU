@@ -30,12 +30,6 @@ public class AboutFragment extends Fragment {
     @BindView(R.id.collapsing_toolbar_layout) CollapsingToolbarLayout mToolbarLayout;
     @BindView(R.id.toolbar) Toolbar mToolbar;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

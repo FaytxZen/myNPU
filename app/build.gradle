@@ -1,18 +1,16 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'com.getkeepsafe.dexcount'
-//apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "com.andrewvora.apps.mynpu"
-        minSdkVersion 17
-        targetSdkVersion 25
-        versionCode 3
-        versionName "1.0.2"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 4
+        versionName "1.0.3"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -28,54 +26,55 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 // Variables
-def appCompatVersion = '25.3.1'
+def appCompatVersion = '27.1.1'
 def junitVersion = '4.12'
 def mockitoVersion = '1.10.19'
 def leakCanaryVersion = '1.3.1'
-def playServicesVersion = '10.2.1'
+def playServicesVersion = '15.0.1'
+def firebaseVersion = '16.0.1'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // System Dependencies
-    compile "com.android.support:appcompat-v7:$appCompatVersion"
-    compile "com.android.support:design:$appCompatVersion"
-    compile "com.android.support:cardview-v7:$appCompatVersion"
-    compile "com.android.support:recyclerview-v7:$appCompatVersion"
-    compile "com.google.android.gms:play-services-location:$playServicesVersion"
-    compile "com.google.android.gms:play-services-maps:$playServicesVersion"
-    compile "com.google.firebase:firebase-core:$playServicesVersion"
-    compile "com.google.firebase:firebase-database:$playServicesVersion"
-    compile ('com.google.maps.android:android-maps-utils:0.4.3') {
-    }
+    implementation "com.android.support:appcompat-v7:$appCompatVersion"
+    implementation "com.android.support:design:$appCompatVersion"
+    implementation "com.android.support:cardview-v7:$appCompatVersion"
+    implementation "com.android.support:recyclerview-v7:$appCompatVersion"
+    implementation "com.google.android.gms:play-services-location:$playServicesVersion"
+    implementation "com.google.android.gms:play-services-maps:$playServicesVersion"
+    implementation "com.google.firebase:firebase-core:$firebaseVersion"
+    implementation "com.google.firebase:firebase-database:$firebaseVersion"
+    implementation ('com.google.maps.android:android-maps-utils:0.4.3')
 
     // Developer Dependencies
-    apt 'com.jakewharton:butterknife-compiler:8.0.1'
-    compile 'com.jakewharton:butterknife:8.0.1'
-    //compile('com.crashlytics.sdk.android:crashlytics:2.6.1@aar') {
-    //    transitive = true;
-    //}
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    implementation 'com.jakewharton:butterknife:8.5.1'
 
-    debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
-    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
-    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
 
     // Unit Testing Dependencies
-    testCompile "junit:junit:$junitVersion"
-    testCompile "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
 
     // Android Instrumented Unit Testing Dependencies
-    androidTestCompile "junit:junit:$junitVersion"
-    androidTestCompile "org.mockito:mockito-core:$mockitoVersion"
-    androidTestCompile "com.android.support:support-annotations:$appCompatVersion"
-    androidTestCompile 'com.android.support.test:runner:0.5'
-    androidTestCompile 'com.android.support.test:rules:0.5'
-    androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2.2') {
+    androidTestImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
+    androidTestImplementation "com.android.support:support-annotations:$appCompatVersion"
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation ('com.android.support.test.espresso:espresso-contrib:3.0.2') {
         // Necessary to avoid version conflicts
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module: 'support-v4'

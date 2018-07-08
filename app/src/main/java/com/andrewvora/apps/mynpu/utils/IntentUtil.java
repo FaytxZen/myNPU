@@ -16,15 +16,14 @@ import java.net.URLEncoder;
  */
 public final class IntentUtil {
 
-    public static final String ENCODING_TYPE = "UTF-8";
+    private static final String ENCODING_TYPE = "UTF-8";
 
     /**
      * Sends an map intent to the Android package manager if such an app exists.
      * @param context - used to get the package manager
      * @param uri - used to give the geo-query to the receiving app
-     * @return the sent {@link Intent}
      */
-    public static Intent sendMapIntent(Context context, Uri uri) {
+    public static void sendMapIntent(Context context, Uri uri) {
         Intent mapIntent = new Intent(Intent.ACTION_VIEW);
         mapIntent.setData(uri);
 
@@ -32,7 +31,6 @@ public final class IntentUtil {
             context.startActivity(mapIntent);
         }
 
-        return mapIntent;
     }
 
     /**
@@ -40,9 +38,8 @@ public final class IntentUtil {
      * to add an entry for the given eventData.
      * @param context - used to send the {@link Intent}
      * @param eventData - the {@link NpuData} object to make the event entry for.
-     * @return the {@link Intent} sent
      */
-    public static Intent sendCalendarIntent(Context context, NpuData eventData) {
+    public static void sendCalendarIntent(Context context, NpuData eventData) {
         Intent calendarIntent = new Intent(Intent.ACTION_INSERT,
                 CalendarContract.Events.CONTENT_URI);
 
@@ -59,7 +56,6 @@ public final class IntentUtil {
             context.startActivity(calendarIntent);
         }
 
-        return calendarIntent;
     }
 
     /**

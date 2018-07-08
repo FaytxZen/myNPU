@@ -1,5 +1,7 @@
 package com.andrewvora.apps.mynpu;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.andrewvora.apps.mynpu.listeners.DataReceiverListener;
@@ -14,6 +16,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by root on 6/3/16.
@@ -22,24 +25,33 @@ import java.util.List;
 public final class Session {
 
     private static final String KEY_NPU_DATA = "npuMeetings";
+	private static final Session mInstance = new Session();
 
-    public HashMap<String, List<NpuData>> npuMap;
-    private static final Session mInstance = new Session();
-    private Session() {}
+	@Nullable private DatabaseReference databaseReference;
+	@NonNull private Map<String, List<NpuData>> npuMap = new HashMap<>();
+
+	private Session() {}
 
     public static Session getInstance() {
         return mInstance;
     }
 
-    public boolean loadMeetingData
-            (final WeakReference<DataReceiverListener> listener)
-    {
-        setNpuMap(new HashMap<String, List<NpuData>>());
+    public void loadEventData(final WeakReference<DataReceiverListener> listener) {
+	    if (databaseReference == null) {
+		    databaseReference = FirebaseDatabase.getInstance().getReference();
+	    }
 
         try {
-            ValueEventListener eventListener = new ValueEventListener() {
+            final ValueEventListener eventListener = new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                	// prevent further callbacks
+	                if (databaseReference != null) {
+	                	databaseReference.removeEventListener(this);
+	                }
+
+	                // reset the list of NPUs
+	                npuMap.clear();
 
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         NpuData npuData = snapshot.getValue(NpuData.class);
@@ -49,12 +61,12 @@ public final class Session {
                             String key = npuData.getNpu().toLowerCase();
 
                             // initialize the List if the key doesn't exist
-                            if(!getNpuMap().containsKey(key)) {
-                                getNpuMap().put(key, new ArrayList<NpuData>());
+                            if(!npuMap.containsKey(key)) {
+                                npuMap.put(key, new ArrayList<NpuData>());
                             }
 
                             // add the NPU event data
-                            getNpuMap().get(key).add(npuData);
+                            npuMap.get(key).add(npuData);
                         }
                     }
 
@@ -65,26 +77,18 @@ public final class Session {
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) { }
+                public void onCancelled(@NonNull DatabaseError databaseError) { }
             };
 
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
             databaseReference.child(KEY_NPU_DATA).addValueEventListener(eventListener);
-
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(Session.class.getSimpleName(), e.getMessage());
-            return false;
         }
-
-        return true;
     }
 
-    public HashMap<String, List<NpuData>> getNpuMap() {
+    @NonNull
+    public Map<String, List<NpuData>> getNpuMap() {
         return mInstance.npuMap;
-    }
-
-    public void setNpuMap(HashMap<String, List<NpuData>> map) {
-        mInstance.npuMap = map;
     }
 }

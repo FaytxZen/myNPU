@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,9 +22,12 @@ import com.andrewvora.apps.mynpu.activities.ScheduleActivity;
 import com.andrewvora.apps.mynpu.adapters.UpcomingEventAdapter;
 import com.andrewvora.apps.mynpu.listeners.DataReceiverListener;
 import com.andrewvora.apps.mynpu.listeners.LocalDataReceiver;
+import com.andrewvora.apps.mynpu.models.NpuData;
 import com.andrewvora.apps.mynpu.utils.ServiceUtil;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,9 +42,7 @@ import butterknife.OnClick;
  * Created by root on 5/31/16.
  * @author faytxzen
  */
-public class DashboardFragment extends BaseFragment
-        implements DataReceiverListener
-{
+public class DashboardFragment extends BaseFragment implements DataReceiverListener {
     /*===========================================*
      * Constants
      *===========================================*/
@@ -52,6 +54,7 @@ public class DashboardFragment extends BaseFragment
     @BindView(R.id.list_upcoming_events) RecyclerView mEventsRecyclerView;
     @BindView(R.id.text_selected_npu) TextView mNpuTextView;
     @BindView(R.id.empty_events_view) TextView mEmptyTextView;
+    @BindView(R.id.set_npu_fab) FloatingActionButton mSetNpuFab;
 
     private UpcomingEventAdapter mEventAdapter;
     private LocalDataReceiver mBroadcastReceiver;
@@ -82,11 +85,17 @@ public class DashboardFragment extends BaseFragment
         return view;
     }
 
-    @Override
-    public void onPause() {
+	@Override
+	public void onResume() {
+		super.onResume();
+		mSetNpuFab.setEnabled(true);
+	}
 
+	@Override
+    public void onPause() {
         if(mBroadcastReceiver != null) {
-            LocalBroadcastManager.getInstance(getActivity())
+            LocalBroadcastManager
+		            .getInstance(getActivity())
                     .unregisterReceiver(mBroadcastReceiver);
         }
 
@@ -133,11 +142,12 @@ public class DashboardFragment extends BaseFragment
         }
 
         view.animate().rotationBy(-180f).setDuration(250).start();
-        Session.getInstance().loadMeetingData(new WeakReference<DataReceiverListener>(this));
+        Session.getInstance().loadEventData(new WeakReference<>(this));
     }
 
     @OnClick(R.id.set_npu_fab)
     void onFindNpuClicked() {
+    	mSetNpuFab.setEnabled(false);
         Intent findNpuIntent = new Intent(getActivity(), MapActivity.class);
         startActivityForResult(findNpuIntent, 0);
     }
@@ -171,7 +181,8 @@ public class DashboardFragment extends BaseFragment
     private void initViews() {
         // initialize the adapter based on the set NPU
         String key = getNpuFromPref().toLowerCase();
-        mEventAdapter = new UpcomingEventAdapter(Session.getInstance().getNpuMap().get(key));
+        Map<String, List<NpuData>> eventMap = Session.getInstance().getNpuMap();
+        mEventAdapter = new UpcomingEventAdapter(eventMap.get(key));
 
         // initialize the RecyclerView
         mEventsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

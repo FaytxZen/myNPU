@@ -2,6 +2,7 @@ package com.andrewvora.apps.mynpu.adapters;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,8 +44,9 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
     /*===========================================*
      * Public Methods
      *===========================================*/
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.element_upcoming_event, parent, false);
 
@@ -99,13 +101,17 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
     /*===========================================*
      * Inner Classes
      *===========================================*/
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.meeting_name) public TextView meetingNameView;
-        @BindView(R.id.meeting_location) public TextView meetingLocView;
-        @BindView(R.id.meeting_time) public TextView meetingTimeView;
-        @BindView(R.id.meeting_icon) public ImageView meetingIconView;
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.meeting_name)
+        TextView meetingNameView;
+        @BindView(R.id.meeting_location)
+        TextView meetingLocView;
+        @BindView(R.id.meeting_time)
+        TextView meetingTimeView;
+        @BindView(R.id.meeting_icon)
+        ImageView meetingIconView;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }

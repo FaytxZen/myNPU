@@ -17,7 +17,7 @@ import java.util.Locale;
 @IgnoreExtraProperties
 public class NpuData {
 
-    public static final long DEFAULT_DURATION = 60 * 60 * 1000; // one hour
+    static final long DEFAULT_DURATION = 60 * 60 * 1000; // one hour
 
     @PropertyName("npu")
     private String npu;

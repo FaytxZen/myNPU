@@ -15,8 +15,8 @@ import java.util.Locale;
  */
 public final class DateUtil {
 
-    public static final String READABLE_DATE_FORMAT = "MMMM dd, yyyy";
-    public static final String TIME_12H_FORMAT = "hh:mm a";
+    private static final String READABLE_DATE_FORMAT = "MMMM dd, yyyy";
+    private static final String TIME_12H_FORMAT = "hh:mm a";
 
     public static Date getTimeFromString(String timeStr) {
         // make sure the timeStr isn't null or empty to prevent a parse exception

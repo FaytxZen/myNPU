@@ -22,7 +22,7 @@ public abstract class ServiceUtil {
         ConnectivityManager cm =
                 (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        NetworkInfo activeNetwork = cm != null ? cm.getActiveNetworkInfo() : null;
 
         return activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();

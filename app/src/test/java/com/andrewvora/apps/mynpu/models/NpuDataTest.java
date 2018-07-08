@@ -16,10 +16,9 @@ public class NpuDataTest {
 
     /**
      * {@link NpuData#getStartTime()}
-     * @throws Exception
      */
     @Test
-    public void testGetStartTime() throws Exception {
+    public void testGetStartTime() {
         // set up
         NpuData data = new NpuData();
 
@@ -63,30 +62,28 @@ public class NpuDataTest {
 
     /**
      * {@link NpuData#getEndTime()}
-     * @throws Exception
      */
     @Test
-    public void testGetEndTime() throws Exception {
+    public void testGetEndTime() {
         // set up
         NpuData data = new NpuData();
 
         // TEST: correct time - morning - returns next meeting date at the set time + duration
         data.setTime("6:15 AM");
         data.setDay("Tuesday");
-        assertTrue(data.getEndTime() - data.getStartTime() == NpuData.DEFAULT_DURATION);
+	    assertEquals(data.getEndTime() - data.getStartTime(), NpuData.DEFAULT_DURATION);
 
         // TEST: correct time - evening - returns today at the set time + duration
         data.setTime("6:45 PM");
         data.setDay("Friday");
-        assertTrue(data.getEndTime() - data.getStartTime() == NpuData.DEFAULT_DURATION);
+	    assertEquals(data.getEndTime() - data.getStartTime(), NpuData.DEFAULT_DURATION);
     }
 
     /**
      * {@link NpuData#getRepeatingRule()}
-     * @throws Exception
      */
     @Test
-    public void testGetRepeatingRule() throws Exception {
+    public void testGetRepeatingRule() {
         // set up
         NpuData data = new NpuData();
 

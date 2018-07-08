@@ -1,7 +1,6 @@
 package com.andrewvora.apps.mynpu.activities;
 
 import android.animation.Animator;
-import android.app.AlertDialog;
 import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
@@ -168,11 +167,14 @@ public class MapActivity extends AppCompatActivity implements
                 GeoJsonPolygon polygon = (GeoJsonPolygon) feature.getGeometry();
                 coordinates = polygon.getCoordinates().get(0);
             }
-            LatLng center = GeoUtil.getCentroid(coordinates);
 
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.draggable(false).position(center).icon(descriptor);
-            mGoogleMap.addMarker(markerOptions);
+            if (coordinates != null) {
+	            LatLng center = GeoUtil.getCentroid(coordinates);
+
+	            MarkerOptions markerOptions = new MarkerOptions();
+	            markerOptions.draggable(false).position(center).icon(descriptor);
+	            mGoogleMap.addMarker(markerOptions);
+            }
         }
     }
 
@@ -219,16 +221,12 @@ public class MapActivity extends AppCompatActivity implements
         LatLng latLng = reverseGeocodeAddress(v.getText().toString());
         GeoJsonFeature feature = determineNPU(latLng);
 
+	    // add marker to show our geocoded result
+	    addMarker(latLng);
+
         boolean hasFeature = feature != null;
 
         if(hasFeature) {
-            // add marker to show our geocoded result
-            MarkerOptions markerOptions = new MarkerOptions()
-                    .title(getString(R.string.title_geocode_result_marker))
-                    .draggable(false)
-                    .position(latLng);
-            mCurrentLocMarker = mGoogleMap.addMarker(markerOptions);
-
             // prompt the user if they would like to set the marker
             String template = getString(R.string.text_npu_template);
             String npu = String.format(template, feature.getProperty("NPU"));
@@ -240,12 +238,9 @@ public class MapActivity extends AppCompatActivity implements
             toggleNpuViews();
             // hide the keyboard
             ViewUtil.hideSoftKeyboard(mAddressEditText);
-        }
-        else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(R.string.text_dialog_cannot_find_npu)
-                    .setNeutralButton(android.R.string.ok, null);
-            builder.create().show();
+        } else {
+            moveMapToCurrentLoc();
+            showFailureSnackBar();
         }
 
         return hasFeature;
@@ -254,6 +249,29 @@ public class MapActivity extends AppCompatActivity implements
     /*===========================================*
      * Private Methods
      *===========================================*/
+    private void addMarker(LatLng latLng) {
+	    MarkerOptions markerOptions = new MarkerOptions()
+			    .title(getString(R.string.title_geocode_result_marker))
+			    .draggable(false)
+			    .position(latLng);
+
+	    mCurrentLocMarker = mGoogleMap.addMarker(markerOptions);
+    }
+
+    private void moveMapToCurrentLoc() {
+    	if (mGoogleMap != null && mCurrentLocMarker != null) {
+    		mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(mCurrentLocMarker.getPosition()));
+	    }
+    }
+
+    private void showFailureSnackBar() {
+	    Snackbar.make((View) mToolbar.getParent(),
+			    getString(R.string.text_dialog_cannot_find_npu),
+			    Snackbar.LENGTH_INDEFINITE)
+	            .setAction(R.string.dismiss, v -> {})
+	            .show();
+    }
+
     private void toggleNpuViews() {
         final int animDuration = 200;
         final boolean searchMode = mAddressEditText.getVisibility() == View.VISIBLE;
@@ -266,32 +284,42 @@ public class MapActivity extends AppCompatActivity implements
             mSelectedNpuTextView.setAlpha(0.0f);
             mSelectedNpuTextView.setVisibility(View.VISIBLE);
 
-            mSelectedNpuTextView.animate().alpha(1.0f).setDuration(animDuration).setListener(null)
+            mSelectedNpuTextView.animate()
+		            .alpha(1.0f)
+		            .setDuration(animDuration)
+		            .setListener(null)
                     .start();
 
-            mAddressEditText.animate().alpha(0.0f)
-                    .setDuration(animDuration).setListener(new SimpleAnimatorListener() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-
-                    mAddressEditText.setVisibility(View.GONE);
-                }
-            }).start();
+            mAddressEditText.animate()
+		            .alpha(0.0f)
+                    .setDuration(animDuration)
+		            .setListener(new SimpleAnimatorListener() {
+		                @Override
+		                public void onAnimationEnd(Animator animation) {
+		                        mAddressEditText.setVisibility(View.GONE);
+		                }
+		            }).start();
         }
         else {
             mAddressEditText.setAlpha(0.0f);
             mAddressEditText.setVisibility(View.VISIBLE);
 
-            mAddressEditText.animate().alpha(1.0f).setDuration(animDuration).setListener(null)
+            mAddressEditText.animate()
+		            .alpha(1.0f)
+		            .setDuration(animDuration)
+		            .setListener(null)
                     .start();
 
-            mSelectedNpuTextView.animate().alpha(0.0f)
-                    .setDuration(animDuration).setListener(new SimpleAnimatorListener() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mSelectedNpuTextView.setVisibility(View.GONE);
-                }
-            }).start();
+            mSelectedNpuTextView.animate()
+		            .alpha(0.0f)
+                    .setDuration(animDuration)
+		            .setListener(new SimpleAnimatorListener() {
+		                @Override
+		                public void onAnimationEnd(Animator animation) {
+		                	mAddressEditText.requestFocus();
+		                    mSelectedNpuTextView.setVisibility(View.GONE);
+		                }
+		            }).start();
         }
 
         // change the FAB icon accordingly
@@ -312,13 +340,9 @@ public class MapActivity extends AppCompatActivity implements
             String msg = String.format(getString(R.string.text_npu_set), npuLetter.toUpperCase());
             View rootView = (View) mToolbar.getParent();
 
-            final Snackbar snackbar = Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT);
-            snackbar.setAction(R.string.dismiss, new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    snackbar.dismiss();
-                }
-            }).show();
+            Snackbar.make(rootView, msg, Snackbar.LENGTH_LONG)
+		            .setAction(R.string.dismiss, v -> {})
+		            .show();
         }
     }
 
@@ -351,18 +375,27 @@ public class MapActivity extends AppCompatActivity implements
                 GeoJsonPolygon polygon = (GeoJsonPolygon) feature.getGeometry();
 
                 // check if the geocoded LatLng is within the feature
-                boolean containsAddress = PolyUtil
-                        .containsLocation(coord, polygon.getCoordinates().get(0), false);
-                if(containsAddress) return feature;
+                boolean containsAddress = PolyUtil.containsLocation(
+                		coord,
+		                polygon.getCoordinates().get(0),
+		                false);
+
+                if(containsAddress) {
+                	return feature;
+                }
             }
-            else if(feature.hasGeometry() && feature.getGeometry().getType().equals("MultiPolygon"))
-            {
+            else if(feature.hasGeometry() && feature.getGeometry().getType().equals("MultiPolygon")) {
                 GeoJsonMultiPolygon multiPolygon = (GeoJsonMultiPolygon) feature.getGeometry();
                 for(GeoJsonPolygon polygon : multiPolygon.getPolygons()) {
                     // check if the geocoded LatLng is within the feature
-                    boolean containsAddress = PolyUtil
-                            .containsLocation(coord, polygon.getCoordinates().get(0), false);
-                    if(containsAddress) return feature;
+                    boolean containsAddress = PolyUtil.containsLocation(
+                    		coord,
+		                    polygon.getCoordinates().get(0),
+		                    false);
+
+                    if(containsAddress) {
+                    	return feature;
+                    }
                 }
             }
         }
